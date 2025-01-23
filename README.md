@@ -226,4 +226,4 @@ MIT License - see LICENSE.md
 ## Contact
 McLain Cronin
 cronin97@gmail.com
-GitHub: [Your GitHub Username]
+GitHub: McLainCronin
