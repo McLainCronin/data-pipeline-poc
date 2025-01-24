@@ -32,3 +32,15 @@ def extract_load_taxi_data(**context):
         'database': 'NYC_TAXI_PIPELINE',
         'schema': 'RAW'
     }
+
+extractor = NYCTaxiExtractor(snowflake_creds)
+df = extractor.extract_data(execution_date)
+extractor.load_to_snowflake(df, 'RAW_TAXI_TRIPS')
+
+extract_load_task = PythonOperator(
+    task_id='extract_load_taxi_data',
+    python_callable=extract_load_taxi_data,
+    dag=dag
+)
+
+extract_load_task
