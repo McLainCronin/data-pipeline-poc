@@ -16,3 +16,13 @@ class NYCTaxiExtractor:
              "$where": f"pickup_datetime between '{date.strftime('%Y-%m-%d')}' and '{(date + timedelta(days=1)).strftime('%Y-%m-%d')}'",
              "$limit": 50000
          }
+        
+        response = requests.get(f"{self.base_url}{endpoint}", params=params)
+        response.raise_for_status()
+    
+        df = pd.DataFrame(response.json())
+        return self._clean_data(df)
+
+    def _clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
+        df['pickup_datetime'] = pd.to_datetime(df['pickup_datetime'])
+        df['dropoff_datetime'] = pd.to_datetime(df['dropoff_datetime'])
