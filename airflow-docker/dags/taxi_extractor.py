@@ -36,3 +36,15 @@ class NYCTaxiExtractor:
             (df['fare_amount'] > 0) &
             (df['passenger_count'] > 0)
         ]
+
+        df['trip_duration_minutes'] = (
+            df['dropoff_datetime'] - df['pickup_datetime']
+        ).dt.total_seconds() / 60
+
+        df = df[
+            (df['trip_duration_minutes'] < 24 * 60) &
+            (df['trip_distance'] < 100) &
+            (df['fare_amount'] < 1000)
+        ]
+
+        return df
