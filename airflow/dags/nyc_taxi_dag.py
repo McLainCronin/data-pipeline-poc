@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
-from taxi_extraction import NYCTaxiExtractor
+from utils.taxi_extraction import NYCTaxiExtractor
 
 default_args = {
     'owner': 'airflow',

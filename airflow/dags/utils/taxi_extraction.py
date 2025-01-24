@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class NYCTaxiExtractor:
     def __init__(self, snowflake_credentials: Dict):
         self.snowflake_credentials = snowflake_credentials
-        self.base_url = "https://data.cityofnewyork.us/api/views/qp3b-zxtp"
+        self.base_url = "https://data.cityofnewyork.us/resource/t29m-gskq.json"
 
     def _connect_snowflake(self):
         return snowflake.connector.connect(
